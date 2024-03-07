@@ -86,11 +86,11 @@ async function medsBox(event){
 }
 
 function main(){
-	//var btn1 = document.getElementById("btn1");
-	//btn1.addEventListener("click", download);
+	var btn1 = document.getElementById("btn1");
+	btn1.addEventListener("click", download);
 	
-	var num0 = document.getElementById("num0");
-	num0.addEventListener("change", medsBox);
+	// var num0 = document.getElementById("num0");
+	// num0.addEventListener("change", medsBox);
 }
 
 document.addEventListener('DOMContentLoaded', main);
