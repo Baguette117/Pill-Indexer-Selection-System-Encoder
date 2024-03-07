@@ -17,14 +17,13 @@
 		<br>
 		<label for = "num0">Input daily dose:</label>
 		<input type = "number" id = "num0" name = "num0" min = "0">
-		<button type="button" class="xbtn">
-			<img src = ".\assets\X Button.png" alt = "delete" class = "ximg">
-		</button>
+		<button type = "button" id = "xbtn" class="xbtn" onclick = "medsRemoveBox()">X</button>
 	</div>
+	<button type = "button" id = "addbtn" onclick = "medsNewBox()">Add Medicine Type</button>
 	<form>
 		
 	</form>
-	<button type = "button" id = "btn1">Click Me!</button>
+	<button type = "button" id = "btn1" onclick = "download()">Click Me!</button>
 
 </body>
 </html>

@@ -10,13 +10,17 @@ async function download(){
 	document.body.removeChild(link);
 }
 
-var medsNum = 0;
-var maxMeds = 3;
+medsNum = 0;
+maxMeds = 3;
 
 async function medsNewBox(){
+	console.log("medsNewBox");
 	if (medsNum + 1 >= maxMeds){
 		throw "maxMeds";
 	}
+
+	xbtn = document.getElementById("xbtn");
+
 	++medsNum;
 	newMeds = document.createElement("input");
 	newMeds.type = "text";
@@ -28,7 +32,6 @@ async function medsNewBox(){
 	newNum.id = `num${medsNum}`;
 	newNum.name = `num${medsNum}`;
 	newNum.min = "0";
-	newNum.addEventListener("change", medsBox);
 	
 	newMedsLabel = document.createElement("label");
 	newMedsLabel.htmlFor = `meds${medsNum}`;
@@ -46,26 +49,29 @@ async function medsNewBox(){
 	brk1 = document.createElement("br");
 	brk1.id = `break${medsNum}.1`;
 	
-	document.getElementById(`num${medsNum - 1}`).removeEventListener("change", medsBox);
-	
 	div = document.getElementById("medsdiv");
 	div.appendChild(brk0);
 	div.appendChild(newMedsLabel);
 	div.appendChild(newMeds);
+	div.removeChild(xbtn);
+	div.appendChild(xbtn);
 	div.appendChild(brk1);
 	div.appendChild(newNumLabel);
 	div.appendChild(newNum);
 }
 
 async function medsRemoveBox(){
+	console.log("medsRemoveBox");
+	if (medsNum == 0){
+		throw "minMeds";
+	}
 	meds = document.getElementById(`meds${medsNum}`);
 	num = document.getElementById(`num${medsNum}`);
 	medsLabel = document.getElementById(`medsLabel${medsNum}`);
 	numLabel = document.getElementById(`numLabel${medsNum}`);
 	brk0 = document.getElementById(`break${medsNum}.0`);
-	brk1 = document.getElementById(`break${medsNum}.1`);
+	brk1 = document.getElementById(`break${medsNum--}.1`);
 	
-	document.getElementById(`num${--medsNum}`).addEventListener("change", medsBox);
 	div.removeChild(num);
 	div.removeChild(numLabel);
 	div.removeChild(brk1);
@@ -73,24 +79,3 @@ async function medsRemoveBox(){
 	div.removeChild(medsLabel);
 	div.removeChild(brk0);
 }
-
-async function medsBox(event){
-	console.log(event.target.value);
-	if (event.target.value == "" | event.target.value == 0){
-		console.log("rmb");
-		medsRemoveBox();
-	} else {
-		console.log("nb");
-		medsNewBox();
-	}
-}
-
-function main(){
-	var btn1 = document.getElementById("btn1");
-	btn1.addEventListener("click", download);
-	
-	// var num0 = document.getElementById("num0");
-	// num0.addEventListener("change", medsBox);
-}
-
-document.addEventListener('DOMContentLoaded', main);
